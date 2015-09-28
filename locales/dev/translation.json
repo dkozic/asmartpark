@@ -1,0 +1,54 @@
+{
+	"menu":{
+		"dashboard":"Dashboard",
+		"menuoption1":"Menu option 1",
+		"menuoption2":"Menu option 2",
+		"menuoption3":"Menu option 3"
+	},
+	"navbar":{
+		"brand":"SmartPark",
+		"brandlink":"http://www.audiotexdoo.ba",
+		"home":"Home",
+		"dashboard":"Dashboard",
+		"about":"About"
+	},
+	"common":{
+		"showAll":"Show all",
+		"showMore":"Show more"
+	},
+	"dashboard":{
+		"title":"Dashboard",
+		"empty":"There are no parking places"
+	},
+	"history":{
+		"title":"History for parking place: __parkingplace__"
+	},
+	"parkingplace":{
+		"title":"Parking place: __parkingplace__",
+		"id":"ID",
+		"state":"State",
+		"stateTimestamp":"Timestamp"
+	},
+	"state":{
+		"-1":"UNKNOWN",
+		"0":"OFF",
+		"1":"ON"
+	},
+	"about":{
+		"title":"About SmartPark"
+	},
+	"index":{
+		"title":"Welcome"
+	},
+	"yesno":{
+		"yes":"YES",
+		"no":"NO"
+	},
+	"404":{
+		"title":"Resource not found",
+		"message":"Sorry we can't find requested page."
+	},
+	"5xx":{
+		"title":"Internal server error: __status__"
+	}
+}

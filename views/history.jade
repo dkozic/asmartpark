@@ -1,0 +1,19 @@
+extends layout
+
+block title
+  h2
+    = t('history.title', {parkingplace: parkingplace}) 
+ 
+block content
+    table.table.table-condensed.table-bordered
+      thead
+        tr
+          th= t('parkingplace.stateTimestamp')
+          th= t('parkingplace.state')
+      tbody
+        each h in history.slice(0, 20)
+          - var bgclazz = h.state == -1 ? '' : (h.state == 1 ? 'bg-danger' : 'bg-success');
+          tr(class= bgclazz)
+            td: a(href='/history/view/#{h.id}')= h.timestamp
+            td= t('state.' + h.state) 
+        

@@ -1,0 +1,10 @@
+extends layout
+
+block title
+  h2= t('5xx.title', {status: status})     
+
+block content
+  p= msg              
+    
+  pre= stack    
+

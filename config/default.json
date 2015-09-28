@@ -1,0 +1,18 @@
+{
+	"server":{
+		"port":3000,
+		"sessionTimeout":600000
+	},
+	"i18n":{
+		"lng":"sr",
+		"fallbackLng":"sr"
+	},
+	"tinynode":{
+		"url":"http://192.168.3.1:8080/test",
+		"pollingInterval":4000
+	},
+	"repository":{
+		"parkingPlacesNo":5
+	}
+	
+}

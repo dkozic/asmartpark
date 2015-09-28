@@ -1,0 +1,54 @@
+{
+	"404":{
+		"title":"Stranica nije pronađena",
+		"message":"Tražena stranica ne postoji"
+	},
+	"menu":{
+		"dashboard":"Pregled",
+		"menuoption1":"Menu option 1",
+		"menuoption2":"Menu option 2",
+		"menuoption3":"Menu option 3"
+	},
+	"navbar":{
+		"brand":"SmartPark",
+		"brandlink":"http://www.audiotexdoo.ba",
+		"home":"Početna",
+		"dashboard": "Pregled",
+		"about":"About"
+	},
+	"common":{
+		"showAll":"Prikaži sve",
+		"showMore":"Detaljnije"
+	},
+	"dashboard":{
+		"title":"Dashboard",
+		"empty":"Nema parking mesta"
+	},
+	"history":{
+		"title":"History for parking place: __parkingplace__"
+	},
+	"parkingplace":{
+		"title":"Parking place: __parkingplace__",
+		"id":"ID",
+		"state":"State",
+		"stateTimestamp":"Timestamp"
+	},
+	"state": {
+		"-1": "UNKNOWN",
+		"0": "OFF",
+		"1": "ON"
+	},
+	"about":{
+		"title":"About SmartPark"
+	},
+	"index":{
+		"title":"Dobrodošli"
+	},
+	"yesno":{
+		"yes":"DA",
+		"no":"NE"
+	},
+	"5xx":{
+		"title":"Internal server error: __status__"
+	}
+}

@@ -1,0 +1,52 @@
+extends layout
+
+block title
+  h2
+    = t('dashboard.title')
+  
+  div.alert.alert-info(role="alert" id="message")
+ 
+block content
+  if repository.parkingPlaces.length == 0
+    = t("dashboard.empty")
+     
+  each pp in repository.parkingPlaces
+    div.col-md-3
+      div.panel.panel-default
+        div.panel-heading: a(href='/history/#{pp.id}')= t('parkingplace.title', {parkingplace: pp.id})
+        - var pptbid='parkingplacetb' + pp.id;
+        - var bgclazz = pp.state == -1 ? '' : (pp.state == 1 ? 'bg-danger' : 'bg-success');
+        table.table: tbody(class= bgclazz, id= pptbid)
+          tr
+            td= t('parkingplace.id')
+            td= pp.id
+          tr
+            td= t('parkingplace.state')
+            td= t("state." + pp.state)
+          tr
+            td= t('parkingplace.stateTimestamp')
+            td= pp.stateTimestamp
+
+block script
+  script.
+    var option = { resGetPath: 'locales/__lng__/__ns__.json' , lng: "sr" };
+    i18n.init(option);
+
+    var socket = io();
+    socket.on('data', function (data) {
+      //console.log(data);
+      
+      $('#message').text(JSON.stringify(data));      
+      
+      var bgclazz = data.state == -1 ? '' : (data.state == 1 ? 'bg-danger' : 'bg-success');
+      var pptbid = '#parkingplacetb' + data.id;
+      $(pptbid).removeClass("bg-danger");
+      $(pptbid).removeClass("bg-info");
+      $(pptbid).addClass(bgclazz);
+      
+      var ppsid = pptbid + " tr:eq(1) td:eq(1)";
+      $(ppsid).text(i18n.t("state." + data.state));
+      
+      var ppstid = pptbid + " tr:eq(2) td:eq(1)";
+      $(ppstid).text(data.stateTimestamp);
+    });

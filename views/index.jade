@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    include head
+
+  body
+    include navbar
+
+    div.container
+      div.jumbotron.text-center
+        h1 Dobrodošli u SmartPark 
+        p Pametan pogled na Vaš parking...  
+        p: a.btn.btn-primary.btn-lg(href='/dashboard' role='button') Dashboard
+
+    include footer

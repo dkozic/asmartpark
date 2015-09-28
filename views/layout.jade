@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    include head
+
+  body
+    include navbar
+
+    div.container
+      div.page-header
+        block title
+
+      div
+        block content
+
+    include footer
+          
+    block script
