@@ -1,8 +1,4 @@
 {
-	"404":{
-		"title":"Stranica nije pronađena",
-		"message":"Tražena stranica ne postoji"
-	},
 	"menu":{
 		"dashboard":"Pregled",
 		"menuoption1":"Menu option 1",
@@ -13,7 +9,7 @@
 		"brand":"SmartPark",
 		"brandlink":"http://www.audiotexdoo.ba",
 		"home":"Početna",
-		"dashboard": "Pregled",
+		"dashboard":"Pregled",
 		"about":"About"
 	},
 	"common":{
@@ -33,10 +29,10 @@
 		"state":"State",
 		"stateTimestamp":"Timestamp"
 	},
-	"state": {
-		"-1": "UNKNOWN",
-		"0": "OFF",
-		"1": "ON"
+	"state":{
+		"-1":"UNKNOWN",
+		"0":"OFF",
+		"1":"ON"
 	},
 	"about":{
 		"title":"About SmartPark"
@@ -47,6 +43,10 @@
 	"yesno":{
 		"yes":"DA",
 		"no":"NE"
+	},
+	"404":{
+		"title":"Stranica nije pronađena",
+		"message":"Tražena stranica ne postoji"
 	},
 	"5xx":{
 		"title":"Internal server error: __status__"
