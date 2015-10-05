@@ -38,7 +38,9 @@
 		"title":"About SmartPark"
 	},
 	"index":{
-		"title":"Welcome"
+		"title":"Welcome to SmartPark",
+		"dashboard":"Dashboard",
+		"description":"Your view on parking..."
 	},
 	"yesno":{
 		"yes":"YES",

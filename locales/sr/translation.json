@@ -10,24 +10,24 @@
 		"brandlink":"http://www.audiotexdoo.ba",
 		"home":"Početna",
 		"dashboard":"Pregled",
-		"about":"About"
+		"about":"O nama"
 	},
 	"common":{
 		"showAll":"Prikaži sve",
 		"showMore":"Detaljnije"
 	},
 	"dashboard":{
-		"title":"Dashboard",
+		"title":"Pregled",
 		"empty":"Nema parking mesta"
 	},
 	"history":{
-		"title":"History for parking place: __parkingplace__"
+		"title":"Istorija parking mjesta: __parkingplace__"
 	},
 	"parkingplace":{
-		"title":"Parking place: __parkingplace__",
+		"title":"Parking mjesto: __parkingplace__",
 		"id":"ID",
-		"state":"State",
-		"stateTimestamp":"Timestamp"
+		"state":"Status",
+		"stateTimestamp":"Vrijeme"
 	},
 	"state":{
 		"-1":"UNKNOWN",
@@ -38,7 +38,9 @@
 		"title":"About SmartPark"
 	},
 	"index":{
-		"title":"Dobrodošli"
+		"title":"Dobrodošli u SmartPark",
+		"dashboard":"Pregled",
+		"description":"Vaš pogled na parking..."
 	},
 	"yesno":{
 		"yes":"DA",
