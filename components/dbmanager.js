@@ -4,7 +4,7 @@ var VError = require('verror');
 var log = require('../lib/log')('/app');
 
 function DbManager() {
-	this.file = "smartpark.db";
+	this.file = "asmartpark.db";
 	this.openDatabase = function() {
 		var exists = fs.existsSync(this.file);
 		if (!exists) {

@@ -6,7 +6,7 @@
 		"menuoption3":"Menu option 3"
 	},
 	"navbar":{
-		"brand":"SmartPark",
+		"brand":"aSmartPark",
 		"brandlink":"http://www.audiotexdoo.ba",
 		"home":"Home",
 		"dashboard":"Dashboard",
@@ -35,10 +35,10 @@
 		"1":"ON"
 	},
 	"about":{
-		"title":"About SmartPark"
+		"title":"About aSmartPark"
 	},
 	"index":{
-		"title":"Welcome to SmartPark",
+		"title":"Welcome to aSmartPark",
 		"dashboard":"Dashboard",
 		"description":"Your view on parking..."
 	},
