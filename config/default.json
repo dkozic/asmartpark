@@ -12,7 +12,7 @@
 		"pollingInterval":4000
 	},
 	"repository":{
-		"parkingPlacesNo":8
+		"parkingPlacesNo":6
 	}
 	
 }
