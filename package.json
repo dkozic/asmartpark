@@ -16,6 +16,7 @@
     "mime": "*",
     "moment": "*",
     "sqlite3": "*",
-    "verror": "*"
+    "verror": "*",
+    "struct": "*"
   }
 }

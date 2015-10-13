@@ -10,6 +10,7 @@
 		"brandlink":"http://www.audiotexdoo.ba",
 		"home":"Home",
 		"dashboard":"Dashboard",
+		"nfc":"NFC",
 		"about":"About"
 	},
 	"common":{
@@ -36,6 +37,9 @@
 	},
 	"about":{
 		"title":"About aSmartPark"
+	},
+	"nfc":{
+		"title":"NFC"
 	},
 	"index":{
 		"title":"Welcome to aSmartPark",

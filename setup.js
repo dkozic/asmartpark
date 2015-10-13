@@ -1,4 +1,5 @@
-var TinynodeBinding = require("./bindings/tinynode");
+var TinynodeBinding = require("./bindings/tinynode/tinynodebinding");
+var NfcBinding = require("./bindings/nfc/nfcbinding");
 var logger = require("./components/logger");
 var Repository = require("./components/repository");
 var config = require('config');
@@ -27,6 +28,10 @@ function init(app, io) {
 	tinynodeBinding.on('data', repo.onBindingData);
 
 	tinynodeBinding.start();
+	
+	
+	var nfcBinding = new NfcBinding("172.25.0.19", 4001, pollingInterval);
+	nfcBinding.start();
 	
 	app.locals.repository = repo;
 }
