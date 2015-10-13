@@ -1,0 +1,12 @@
+extends layout
+
+block title
+  h2
+    = t('nfc.title') 
+ 
+block content
+  p
+    |DateTime
+  p= dateTime.buffer().toString('hex')
+
+    
