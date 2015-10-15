@@ -66,6 +66,14 @@ app.get('/about', about.view);
 app.get('/dashboard', dashboard.view);
 app.get('/history/:id', history.list);
 app.get('/nfc', nfc.view);
+app.get('/nfc/getDateTime', nfc.getDateTime);
+app.get('/nfc/startRFWork', nfc.startRFWork);
+app.get('/nfc/stopRFWork', nfc.stopRFWork);
+app.get('/nfc/resetReader', nfc.resetReader);
+app.get('/nfc/getFirmwareVersion', nfc.getFirmwareVersion);
+app.get('/nfc/getTrigState', nfc.getTrigState);
+app.get('/nfc/getRelayState', nfc.getRelayState);
+app.get('/nfc/masterAcknowledge', nfc.masterAcknowledge);
 
 setup.init(app, io);
 

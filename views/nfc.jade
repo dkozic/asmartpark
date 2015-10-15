@@ -5,8 +5,40 @@ block title
     = t('nfc.title') 
  
 block content
-  p
-    |DateTime
-  p= dateTime.buffer().toString('hex')
+  div.panel.panel-default
+    div.panel-heading= t('nfc.title')
+    table.table: tbody
+      tr
+        td= t('nfc.getDateTime')
+        td: a.btn.btn-default(href='/nfc/getDateTime')= t('nfc.getDateTime')
+        td= getDateTime ? getDateTime.buffer().toString('hex') : ""
+      tr
+        td= t('nfc.stopRFWork')
+        td: a.btn.btn-default(href='/nfc/stopRFWork')= t('nfc.stopRFWork')
+        td= stopRFWork ? stopRFWork.buffer().toString('hex') : ""
+      tr
+        td= t('nfc.startRFWork')
+        td: a.btn.btn-default(href='/nfc/startRFWork')= t('nfc.startRFWork')
+        td= startRFWork ? startRFWork.buffer().toString('hex') : ""
+      tr
+        td= t('nfc.resetReader')
+        td: a.btn.btn-default(href='/nfc/resetReader')= t('nfc.resetReader')
+        td= resetReader ? resetReader.buffer().toString('hex') : ""
+      tr
+        td= t('nfc.getFirmwareVersion')
+        td: a.btn.btn-default(href='/nfc/getFirmwareVersion')= t('nfc.getFirmwareVersion')
+        td= getFirmwareVersion ? getFirmwareVersion.buffer().toString('hex') : ""
+      tr
+        td= t('nfc.getTrigState')
+        td: a.btn.btn-default(href='/nfc/getTrigState')= t('nfc.getTrigState')
+        td= getTrigState ? getTrigState.buffer().toString('hex') : ""
+      tr
+        td= t('nfc.getRelayState')
+        td: a.btn.btn-default(href='/nfc/getRelayState')= t('nfc.getRelayState')
+        td= getRelayState ? getRelayState.buffer().toString('hex') : ""
+      tr
+        td= t('nfc.masterAcknowledge')
+        td: a.btn.btn-default(href='/nfc/masterAcknowledge')= t('nfc.masterAcknowledge')
+        td= masterAcknowledge ? masterAcknowledge : ""
 
     

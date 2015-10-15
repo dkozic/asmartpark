@@ -39,7 +39,16 @@
 		"title":"About aSmartPark"
 	},
 	"nfc":{
-		"title":"NFC"
+		"title":"NFC",
+		"getDateTime":"Get DateTime",
+		"stopRFWork":"Stop RF work",
+		"startRFWork":"Start RF work",
+		"resetReader":"Reset reader",
+		"getFirmwareVersion":"Get firmware version",
+		"getTrigState":"Get trig state",
+		"getRelayState":"Get relay state",
+		"masterAcknowledge":"Master acknowledge"			
+		
 	},
 	"index":{
 		"title":"Dobrodošli u aSmartPark",
