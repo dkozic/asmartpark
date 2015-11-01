@@ -7,6 +7,7 @@ var config = require('config');
 var log = require('./lib/log')('/app');
 var flash = require('express-flash');
 var moment = require('moment');
+var expressValidator = require('express-validator');
 
 //routes configuration
 var routes = require('./routes');
@@ -39,6 +40,7 @@ app.use(express.logger('dev'));
 app.use(express.methodOverride());
 app.use(express.cookieParser('keyboard cat'));
 app.use(express.bodyParser());
+app.use(expressValidator());
 app.use(express.session({
 	cookie : {
 		maxAge : config.get('server.sessionTimeout')
@@ -67,6 +69,7 @@ app.get('/dashboard', dashboard.view);
 app.get('/history/:id', history.list);
 app.get('/nfc', nfc.view);
 app.get('/nfc/getDateTime', nfc.getDateTime);
+app.get('/nfc/setDateTime', nfc.setDateTime);
 app.get('/nfc/startRFWork', nfc.startRFWork);
 app.get('/nfc/stopRFWork', nfc.stopRFWork);
 app.get('/nfc/resetReader', nfc.resetReader);

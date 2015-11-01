@@ -2,16 +2,30 @@ extends layout
 
 block title
   h2
-    = t('nfc.title') 
- 
+    = t('nfc.title')
+
 block content
+  if messages.errors
+    each error in messages.errors
+      div.alert.alert-danger(role="alert")
+        span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true") &nbsp;
+        = error.msg
+
   div.panel.panel-default
-    div.panel-heading= t('nfc.title')
+    div.panel-heading
+      =t('nfc.title')
     table.table: tbody
       tr
         td= t('nfc.getDateTime')
         td: a.btn.btn-default(href='/nfc/getDateTime')= t('nfc.getDateTime')
         td= getDateTime ? getDateTime.buffer().toString('hex') : ""
+      tr
+        td= t('nfc.setDateTime')
+        td
+          form.form-inline(action='/nfc/setDateTime' method="get")
+            input.form-control#dateTime(type='text' name="dateTime" placeholder="YYMMDDHHMISS" value="#{dateTime? dateTime: ''}")
+            button.btn.btn-default(type="submit")= t('nfc.setDateTime')
+        td= setDateTime ? setDateTime.buffer().toString('hex') : ""
       tr
         td= t('nfc.stopRFWork')
         td: a.btn.btn-default(href='/nfc/stopRFWork')= t('nfc.stopRFWork')

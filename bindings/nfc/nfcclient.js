@@ -94,6 +94,46 @@ function parseGetDateTimeResponse(buffer) {
 	return response;
 };
 
+// SetDateTime
+NfcClient.prototype.setDateTime = function(callback, dateTime) {
+	console.log("setDateTime input: " + JSON.stringify(dateTime));
+
+	var self = this;
+	self.callCommand(buildSetDateTimeCommand, parseSetDateTimeResponse, callback, dateTime);
+}
+
+function buildSetDateTimeCommand(dateTime) {
+	var command = new Struct().word8('packetType').word8('stationNum').word8('length').word8('commandCode').word8('year').word8('month').word8('day').word8('hour').word8('minute').word8('second').word8('checkSum');
+	command.allocate();
+	var buffer = command.buffer();
+	buffer.fill(0);
+	// console.log(buffer);
+
+	var proxy = command.fields;
+	proxy.packetType = 0xA5;
+	proxy.stationNum = 0xFF;
+	proxy.length = 8;
+	proxy.commandCode = 0x48;
+	proxy.year = dateTime.year;
+	proxy.month = dateTime.month;
+	proxy.day = dateTime.day;
+	proxy.hour = dateTime.hour;
+	proxy.minute = dateTime.minute;
+	proxy.second = dateTime.second;
+	proxy.checkSum = 0;
+	//console.log(buffer);
+
+	return command;	
+}
+
+function parseSetDateTimeResponse(buffer) {
+	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').array(
+			"responseData", 'word8', 8).word8('checkSum');
+
+	response._setBuff(buffer);
+	return response;
+};
+
 // GetFirmwareVersion
 NfcClient.prototype.getFirmwareVersion = function(callback) {
 	var self = this;

@@ -41,6 +41,7 @@
 	"nfc":{
 		"title":"NFC",
 		"getDateTime":"Get DateTime",
+		"setDateTime":"Set DateTime",
 		"stopRFWork":"Stop RF work",
 		"startRFWork":"Start RF work",
 		"resetReader":"Reset reader",

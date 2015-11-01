@@ -26,6 +26,46 @@ exports.getDateTime = function(req, res, next) {
 
 };
 
+exports.setDateTime = function(req, res, next) {
+	var dateTime = req.query.dateTime;
+	console.log("dateTime request param: " + dateTime);
+
+	//validation
+	req.assert('dateTime', 'DateTime is required').notEmpty();
+	req.assert('dateTime', 'Duzina od DateTime nije dobra. Mora biti 12').len(12, 12);
+	req.assert('dateTime', 'DateTime mora biti sastavljen od cifara').matches(/[0-9]/);
+
+	var errors = req.validationErrors();
+
+	var dateTimeObject = {};
+	dateTimeObject.year = dateTime.substr(0, 2);
+	dateTimeObject.month = dateTime.substr(2, 2);
+	dateTimeObject.day = dateTime.substr(4, 2);
+	dateTimeObject.hour = dateTime.substr(6, 2);
+	dateTimeObject.minute = dateTime.substr(8, 2);
+	dateTimeObject.second = dateTime.substr(10, 2);
+
+	if (errors) {
+		req.flash('errors', errors);
+		res.render('nfc', {
+			title: 'NFC',
+			dateTime: dateTime
+		});
+	} else {
+
+		nfcClient.setDateTime(function(data) {
+			if (data instanceof Error) {
+				return next(data);
+			}
+			res.render('nfc', {
+				title : 'NFC',
+				setDateTime : data
+			});
+		}, dateTimeObject);
+	}
+
+};
+
 exports.startRFWork = function(req, res, next) {
 
 	nfcClient.startRFWork(function(data) {

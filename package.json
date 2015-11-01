@@ -17,6 +17,7 @@
     "moment": "*",
     "sqlite3": "*",
     "verror": "*",
-    "struct": "*"
+    "struct": "*",
+    "express-validator": "*"
   }
 }
