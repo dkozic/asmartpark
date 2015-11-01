@@ -30,8 +30,8 @@ function init(app, io) {
 	tinynodeBinding.start();
 	
 	
-	var nfcBinding = new NfcBinding("172.25.0.19", 4001, pollingInterval);
-	nfcBinding.start();
+	//var nfcBinding = new NfcBinding("172.25.0.19", 4001, pollingInterval);
+	//nfcBinding.start();
 	
 	app.locals.repository = repo;
 }
