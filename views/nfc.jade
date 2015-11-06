@@ -51,6 +51,13 @@ block content
         td: a.btn.btn-default(href='/nfc/getRelayState')= t('nfc.getRelayState')
         td= getRelayState ? getRelayState.buffer().toString('hex') : ""
       tr
+        td= t('nfc.setRelayState')
+        td
+          form.form-inline(action='/nfc/setRelayState' method="get")
+            input.form-control#relayState(type='text' name="relayState" placeholder="X" value="#{relayState? relayState: ''}")
+            button.btn.btn-default(type="submit")= t('nfc.setRelayState')
+        td= setRelayState ? setRelayState.buffer().toString('hex') : ""
+      tr
         td= t('nfc.masterAcknowledge')
         td: a.btn.btn-default(href='/nfc/masterAcknowledge')= t('nfc.masterAcknowledge')
         td= masterAcknowledge ? masterAcknowledge : ""

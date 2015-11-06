@@ -48,6 +48,7 @@
 		"getFirmwareVersion":"Get firmware version",
 		"getTrigState":"Get trig state",
 		"getRelayState":"Get relay state",
+		"setRelayState":"Set relay state",
 		"masterAcknowledge":"Master acknowledge"			
 	},
 	"index":{

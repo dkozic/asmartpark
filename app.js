@@ -76,6 +76,7 @@ app.get('/nfc/resetReader', nfc.resetReader);
 app.get('/nfc/getFirmwareVersion', nfc.getFirmwareVersion);
 app.get('/nfc/getTrigState', nfc.getTrigState);
 app.get('/nfc/getRelayState', nfc.getRelayState);
+app.get('/nfc/setRelayState', nfc.setRelayState);
 app.get('/nfc/masterAcknowledge', nfc.masterAcknowledge);
 
 setup.init(app, io);
