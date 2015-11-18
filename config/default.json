@@ -1,18 +1,46 @@
 {
-	"server":{
-		"port":3000,
-		"sessionTimeout":600000
-	},
-	"i18n":{
-		"lng":"sr",
-		"fallbackLng":"sr"
-	},
-	"tinynode":{
-		"url":"http://192.168.3.1:8080/test",
-		"pollingInterval":4000
-	},
-	"repository":{
-		"parkingPlacesNo":6
-	}
-	
+  "server": {
+    "port": 3000,
+    "sessionTimeout": 600000
+  },
+  "i18n": {
+    "lng": "sr",
+    "fallbackLng": "sr"
+  },
+  "tinynode": {
+    "url": "http://192.168.3.1:8080/test",
+    "pollingInterval": 4000
+  },
+  "repository": {
+    "parkingPlacesNo": 3,
+    "parkingPlaces": [
+      {
+        "id": 1,
+        "code": "001",
+        "rfTags": [
+          "0001",
+          "0002",
+          "0003"
+        ]
+      },
+      {
+        "id": 2,
+        "code": "002",
+        "rfTags": [
+          "0004",
+          "0005",
+          "0006"
+        ]
+      },
+      {
+        "id": 3,
+        "code": "003",
+        "rfTags": [
+          "0007",
+          "0008",
+          "0009"
+        ]
+      }
+    ]
+  }
 }
