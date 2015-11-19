@@ -224,7 +224,7 @@ function buildGetRelayStateCommand() {
 
 function parseGetRelayStateResponse(buffer) {
 
-<<<<<<< HEAD
+	
 	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').word8('responseData').word8('checkSum');
     response._setBuff(buffer);
 	return response;
@@ -261,11 +261,7 @@ function buildSetRelayStateCommand(relayState) {
 function parseSetRelayStateResponse(buffer) {
 	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').array(
 			"responseData", 'word8', 8).word8('checkSum');
-=======
-	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').word8(
-			'state').word8('checkSum');
->>>>>>> refs/remotes/origin/drazen
-
+	
 	response._setBuff(buffer);
 	return response;
 }

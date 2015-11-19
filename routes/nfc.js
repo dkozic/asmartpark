@@ -151,7 +151,7 @@ exports.getRelayState = function(req, res, next) {
 };
 
 exports.setRelayState = function(req, res, next) {
-<<<<<<< HEAD
+	
 	var relayState = req.query.relayState;
 	console.log("relayState request param: " + relayState);
 
@@ -184,7 +184,7 @@ exports.setRelayState = function(req, res, next) {
 			});
 		}, relayStateObject);
 	}
-=======
+	
 	var relay1 = req.query.relay1;
 	console.log("relay1 request param: " + relay1);
 
@@ -204,7 +204,7 @@ exports.setRelayState = function(req, res, next) {
 			setRelayState : data
 		});
 	}, relayState);
->>>>>>> refs/remotes/origin/drazen
+    
 
 };
 
