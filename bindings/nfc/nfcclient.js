@@ -234,7 +234,7 @@ NfcClient.prototype.setRelayState = function(callback, relayState) {
 	console.log("setRelayState input: " + JSON.stringify(relayState));
 
 	var self = this;
-	self.callCommand(buildSetRelayStateCommand, parseRelayStateTimeResponse, callback, relayState);
+	self.callCommand(buildSetRelayStateCommand, parseCompletionResponse, callback, relayState);
 }
 
 function buildSetRelayStateCommand(relayState) {
@@ -249,12 +249,11 @@ function buildSetRelayStateCommand(relayState) {
 	proxy.stationNum = 0xFF;
 	proxy.length = 4;
 	proxy.commandCode = 0x57;
-	proxy.mask = relayState.mask;
-	proxy.state = relayState.state;
-	proxy.checkSum = 0;
+	proxy.mask = 0x03;
+	proxy.state = 0 + (relayState.relay1?1:0) + (relayState.relay2?2:0);
 	//console.log(buffer);
 
-	return command;	
+	return command;
 }
 
 function parseSetRelayStateResponse(buffer) {

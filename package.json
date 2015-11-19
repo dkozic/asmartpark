@@ -19,5 +19,8 @@
     "verror": "*",
     "struct": "*",
     "express-validator": "*"
+  },
+  "devDependencies": {
+    "generic-bitmask": "0.0.7"
   }
 }

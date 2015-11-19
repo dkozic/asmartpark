@@ -66,5 +66,6 @@
 	},
 	"5xx":{
 		"title":"Internal server error: __status__"
+		"message":"Internal server error: __status__"
 	}
 }

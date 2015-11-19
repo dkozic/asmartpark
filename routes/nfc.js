@@ -151,19 +151,22 @@ exports.getRelayState = function(req, res, next) {
 };
 
 exports.setRelayState = function(req, res, next) {
+	var Bitmask = require('generic-bitmask').Mask;
+	var mask = new Bitmask();
 	var relayState = req.query.relayState;
 	console.log("relayState request param: " + relayState);
 
 	//validation
 	req.assert('relayState', 'RelayState is required').notEmpty();
-	req.assert('relayState', 'Duzina od RelayState nije dobra').len(0, 1);
-	req.assert('relayState', 'RelayState mora biti 0 ili 1').matches(/[0-1]/);
+	req.assert('relayState', 'Duzina od RelayState nije dobra. Mora biti 2').len(0, 5);
+	//req.assert('relayState', 'RelayState mora biti sastavljen od cifara').matches(/[a-zA-Z0-9]/);
+	mask.add(3);
 
 	var errors = req.validationErrors();
 
 	var relayStateObject = {};
-	relayStateObject.mask = relayState.substr(0, 1);
-	relayStateObject.state = relayState.substr(0, 1);
+	//relayStateObject.mask = relayState.substr(0, 5);
+	//relayStateObject.state = relayState.substr(0, 5);
 
 	if (errors) {
 		req.flash('errors', errors);

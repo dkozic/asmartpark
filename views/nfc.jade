@@ -46,15 +46,25 @@ block content
         td= t('nfc.getTrigState')
         td: a.btn.btn-default(href='/nfc/getTrigState')= t('nfc.getTrigState')
         td= getTrigState ? getTrigState.buffer().toString('hex') : ""
-      tr
+       tr
         td= t('nfc.getRelayState')
         td: a.btn.btn-default(href='/nfc/getRelayState')= t('nfc.getRelayState')
         td= getRelayState ? getRelayState.buffer().toString('hex') : ""
+        td= getRelayState ? getRelayState.fields.state.toString(2) : ""
       tr
         td= t('nfc.setRelayState')
         td
           form.form-inline(action='/nfc/setRelayState' method="get")
-            input.form-control#relayState(type='text' name="relayState" placeholder="X" value="#{relayState? relayState: ''}")
+            label.checkbox-inline
+              - var checked1 = relay1? true: false
+              - var checkedAttr1 = checked1? "checked":""
+              input(type="checkbox" name="relay1" value="relay1" checked=(checked1?"checked":undefined))
+              |Relay 1
+            label.checkbox-inline
+              - var checked2 = relay2? true: false
+              - var checkedAttr2 = checked2? "checked":""
+              input(type="checkbox" name="relay2"  value="relay2" checked=(checked2?"checked":undefined))
+              |Relay 2
             button.btn.btn-default(type="submit")= t('nfc.setRelayState')
         td= setRelayState ? setRelayState.buffer().toString('hex') : ""
       tr
