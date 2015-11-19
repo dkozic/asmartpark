@@ -55,7 +55,7 @@ NfcClient.prototype.callCommand = function(buildCommand, parseResponse, callback
 		client.destroy();
 
 	});
-};
+}
 
 function buildSimpleCommand(packetType, stationNum, length, commandCode, checkSum) {
 	var command = new Struct().word8('packetType').word8('stationNum').word8('length').word8('commandCode').word8(
@@ -92,7 +92,7 @@ function parseGetDateTimeResponse(buffer) {
 
 	response._setBuff(buffer);
 	return response;
-};
+}
 
 // SetDateTime
 NfcClient.prototype.setDateTime = function(callback, dateTime) {
@@ -132,7 +132,7 @@ function parseSetDateTimeResponse(buffer) {
 
 	response._setBuff(buffer);
 	return response;
-};
+}
 
 // GetFirmwareVersion
 NfcClient.prototype.getFirmwareVersion = function(callback) {
@@ -161,7 +161,7 @@ function parseCompletionResponse(buffer) {
 
 	response._setBuff(buffer);
 	return response;
-};
+}
 
 // ResetReader
 NfcClient.prototype.resetReader = function(callback) {
@@ -210,7 +210,7 @@ function parseGetTrigStateResponse(buffer) {
 
 	response._setBuff(buffer);
 	return response;
-};
+}
 
 // getRelayState
 NfcClient.prototype.getRelayState = function(callback) {
@@ -224,6 +224,7 @@ function buildGetRelayStateCommand() {
 
 function parseGetRelayStateResponse(buffer) {
 
+<<<<<<< HEAD
 	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').word8('responseData').word8('checkSum');
     response._setBuff(buffer);
 	return response;
@@ -260,18 +261,49 @@ function buildSetRelayStateCommand(relayState) {
 function parseSetRelayStateResponse(buffer) {
 	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').array(
 			"responseData", 'word8', 8).word8('checkSum');
+=======
+	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').word8(
+			'state').word8('checkSum');
+>>>>>>> refs/remotes/origin/drazen
 
 	response._setBuff(buffer);
 	return response;
-};
+}
+
+// SetRelayState
+NfcClient.prototype.setRelayState = function(callback, relayState) {
+	console.log("setRelayState input: " + JSON.stringify(relayState));
+
+	var self = this;
+	self.callCommand(buildSetRelayStateCommand, parseCompletionResponse, callback, relayState);
+}
+
+function buildSetRelayStateCommand(relayState) {
+	var command = new Struct().word8('packetType').word8('stationNum').word8('length').word8('commandCode').word8('mask').word8('state').word8('checkSum');
+	command.allocate();
+	var buffer = command.buffer();
+	buffer.fill(0);
+	// console.log(buffer);
+
+	var proxy = command.fields;
+	proxy.packetType = 0xA5;
+	proxy.stationNum = 0xFF;
+	proxy.length = 4;
+	proxy.commandCode = 0x57;
+	proxy.mask = 0x03;
+	proxy.state = 0 + (relayState.relay1?1:0) + (relayState.relay2?2:0);
+	//console.log(buffer);
+
+	return command;
+}
 
 //masterAcknowledge
 NfcClient.prototype.masterAcknowledge = function(callback) {
 	var self = this;
-	self.callCommand(buildMasterAcknowledgeeCommand, null, callback);
+	self.callCommand(buildMasterAcknowledgeCommand, null, callback);
 }
 
-function buildMasterAcknowledgeeCommand() {
+function buildMasterAcknowledgeCommand() {
 	return buildSimpleCommand(0xA5, 0xFF, 2, 0x80, 0); 
 }
 

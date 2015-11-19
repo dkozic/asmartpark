@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 This is branh goran
+=======
+<<<<<<< HEAD
+This is branch drazen
+=======
+This is branch master
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/drazen
 
 # aSmartPark
 

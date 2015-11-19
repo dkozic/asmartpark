@@ -48,7 +48,11 @@
 		"getFirmwareVersion":"Get firmware version",
 		"getTrigState":"Get trig state",
 		"getRelayState":"Get relay state",
+<<<<<<< HEAD
 		"setRelayState":"Set relay state",
+=======
+	    "setRelayState":"Set relay state",
+>>>>>>> refs/remotes/origin/drazen
 		"masterAcknowledge":"Master acknowledge"			
 	},
 	"index":{

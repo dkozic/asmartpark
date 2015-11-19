@@ -151,6 +151,7 @@ exports.getRelayState = function(req, res, next) {
 };
 
 exports.setRelayState = function(req, res, next) {
+<<<<<<< HEAD
 	var relayState = req.query.relayState;
 	console.log("relayState request param: " + relayState);
 
@@ -183,6 +184,27 @@ exports.setRelayState = function(req, res, next) {
 			});
 		}, relayStateObject);
 	}
+=======
+	var relay1 = req.query.relay1;
+	console.log("relay1 request param: " + relay1);
+
+	var relay2 = req.query.relay2;
+	console.log("relay2 request param: " + relay2);
+
+	var relayState = {};
+	relayState.relay1 = relay1?true:false;
+	relayState.relay2 = relay2?true:false;
+
+    nfcClient.setRelayState(function(data) {
+		if (data instanceof Error) {
+			return next(data);
+		}
+		res.render('nfc', {
+			title : 'NFC',
+			setRelayState : data
+		});
+	}, relayState);
+>>>>>>> refs/remotes/origin/drazen
 
 };
 
