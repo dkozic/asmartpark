@@ -49,19 +49,35 @@ block content
       tr
         td= t('nfc.getRelayState')
         td: a.btn.btn-default(href='/nfc/getRelayState')= t('nfc.getRelayState')
-        td= getRelayState ? getRelayState.fields.state.toString(2) : ""
+        td
+          if getRelayState
+            if getRelayState.fields.state & 0x01
+              span.label.label-success
+                |Relay 1&nbsp;
+                span.glyphicon.glyphicon-ok
+            else
+              span.label.label-danger
+                | Relay 1&nbsp;
+                span.glyphicon.glyphicon-remove
+            |&nbsp;&nbsp;
+            if getRelayState.fields.state & 0x02
+              span.label.label-success
+                |Relay 2&nbsp;
+                span.glyphicon.glyphicon-ok
+            else
+              span.label.label-danger
+                |Relay 2&nbsp;
+                span.glyphicon.glyphicon-remove
       tr
         td= t('nfc.setRelayState')
         td
           form.form-inline(action='/nfc/setRelayState' method="get")
             label.checkbox-inline
               - var checked1 = relay1? true: false
-              - var checkedAttr1 = checked1? "checked":""
               input(type="checkbox" name="relay1" value="relay1" checked=(checked1?"checked":undefined))
               |Relay 1
             label.checkbox-inline
               - var checked2 = relay2? true: false
-              - var checkedAttr2 = checked2? "checked":""
               input(type="checkbox" name="relay2"  value="relay2" checked=(checked2?"checked":undefined))
               |Relay 2
             button.btn.btn-default(type="submit")= t('nfc.setRelayState')
