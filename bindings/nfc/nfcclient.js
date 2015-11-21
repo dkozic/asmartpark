@@ -222,11 +222,49 @@ function buildGetRelayStateCommand() {
 	return buildSimpleCommand(0xA5, 0xFF, 2, 0x58, 0); 
 }
 
-function parseGetRelayStateResponse(buffer) {	
-	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').word8('state').word8('checkSum');
+function parseGetRelayStateResponse(buffer) {
+
+	
+	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').word8('responseData').word8('checkSum');
     response._setBuff(buffer);
 	return response;
 };
+
+//SetRelayState
+NfcClient.prototype.setRelayState = function(callback, relayState) {
+	console.log("setRelayState input: " + JSON.stringify(relayState));
+
+	var self = this;
+	self.callCommand(buildSetRelayStateCommand, parseRelayStateTimeResponse, callback, relayState);
+}
+
+function buildSetRelayStateCommand(relayState) {
+	var command = new Struct().word8('packetType').word8('stationNum').word8('length').word8('commandCode').word8('mask').word8('state').word8('checkSum');
+	command.allocate();
+	var buffer = command.buffer();
+	buffer.fill(0);
+	// console.log(buffer);
+
+	var proxy = command.fields;
+	proxy.packetType = 0xA5;
+	proxy.stationNum = 0xFF;
+	proxy.length = 4;
+	proxy.commandCode = 0x57;
+	proxy.mask = relayState.mask;
+	proxy.state = relayState.state;
+	proxy.checkSum = 0;
+	//console.log(buffer);
+
+	return command;	
+}
+
+function parseSetRelayStateResponse(buffer) {
+	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').array(
+			"responseData", 'word8', 8).word8('checkSum');
+	
+	response._setBuff(buffer);
+	return response;
+}
 
 // SetRelayState
 NfcClient.prototype.setRelayState = function(callback, relayState) {

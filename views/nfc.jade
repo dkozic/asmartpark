@@ -56,6 +56,7 @@ block content
           form.form-inline(action='/nfc/setRelayState' method="get")
             label.checkbox-inline
               - var checked1 = relay1? true: false
+              - var checkedAttr1 = checked1? "checked":""
               input(type="checkbox" name="relay1" value="relay1" checked=(checked1?"checked":undefined))
               |Relay 1
             label.checkbox-inline
@@ -63,11 +64,6 @@ block content
               - var checkedAttr2 = checked2? "checked":""
               input(type="checkbox" name="relay2"  value="relay2" checked=(checked2?"checked":undefined))
               |Relay 2
-              label.checkbox-inline
-              - var checked3 = relay3? true: false
-              - var checkedAttr3 = checked3? "checked":""
-              input(type="checkbox" name="relay3"  value="relay3" checked=(checked3?"checked":undefined))
-              |Relay 3
             button.btn.btn-default(type="submit")= t('nfc.setRelayState')
         td= setRelayState ? setRelayState.buffer().toString('hex') : ""
       tr
