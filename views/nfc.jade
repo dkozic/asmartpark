@@ -64,7 +64,7 @@ block content
               - var checkedAttr2 = checked2? "checked":""
               input(type="checkbox" name="relay2"  value="relay2" checked=(checked2?"checked":undefined))
               |Relay 2
-            button.btn.btn-default(type="submit")= t('nfc.setRelayState')
+            button.btn.btn-default(type="submit" class="btn btn-info")= t('nfc.setRelayState')
         td= setRelayState ? setRelayState.buffer().toString('hex') : ""
       tr
         td= t('nfc.setRelayState')

@@ -154,36 +154,6 @@ exports.setRelayState = function(req, res, next) {
 	
 	var relayState = req.query.relayState;
 	console.log("relayState request param: " + relayState);
-
-	//validation
-	req.assert('relayState', 'RelayState is required').notEmpty();
-	req.assert('relayState', 'Duzina od RelayState nije dobra').len(0, 1);
-	req.assert('relayState', 'RelayState mora biti 0 ili 1').matches(/[0-1]/);
-
-	var errors = req.validationErrors();
-
-	var relayStateObject = {};
-	relayStateObject.mask = relayState.substr(0, 1);
-	relayStateObject.state = relayState.substr(0, 1);
-
-	if (errors) {
-		req.flash('errors', errors);
-		res.render('nfc', {
-			title: 'NFC',
-			relayState: relayState
-		});
-	} else {
-
-		nfcClient.setRelayState(function(data) {
-			if (data instanceof Error) {
-				return next(data);
-			}
-			res.render('nfc', {
-				title : 'NFC',
-				setRelayState : data
-			});
-		}, relayStateObject);
-	}
 	
 	var relay1 = req.query.relay1;
 	console.log("relay1 request param: " + relay1);
