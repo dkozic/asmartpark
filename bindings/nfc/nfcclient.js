@@ -46,16 +46,16 @@ NfcClient.prototype.callCommand = function(buildCommand, parseResponse, callback
 			var response = parseResponse(responseBuffer);
 			console.log("response:");
 			console.log(responseBuffer);
-			callback(response);
+			callback(null, command, response);
 		} else {
-			callback();
+			callback(null, command);
 		}
 
 		// Close the client socket completely
 		client.destroy();
 
 	});
-}
+};
 
 function buildSimpleCommand(packetType, stationNum, length, commandCode, checkSum) {
 	var command = new Struct().word8('packetType').word8('stationNum').word8('length').word8('commandCode').word8(
@@ -80,7 +80,7 @@ function buildSimpleCommand(packetType, stationNum, length, commandCode, checkSu
 NfcClient.prototype.getDateTime = function(callback) {
 	var self = this;
 	self.callCommand(buildGetDateTimeCommand, parseGetDateTimeResponse, callback);
-}
+};
 
 function buildGetDateTimeCommand() {
 	return buildSimpleCommand(0xA5, 0xFF, 2, 0x49, 0); 
@@ -88,7 +88,7 @@ function buildGetDateTimeCommand() {
 
 function parseGetDateTimeResponse(buffer) {
 	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').array(
-			"responseData", 'word8', 8).word8('checkSum');
+			'responseData', 6, 'word8').word8('checkSum');
 
 	response._setBuff(buffer);
 	return response;
@@ -100,7 +100,7 @@ NfcClient.prototype.setDateTime = function(callback, dateTime) {
 
 	var self = this;
 	self.callCommand(buildSetDateTimeCommand, parseSetDateTimeResponse, callback, dateTime);
-}
+};
 
 function buildSetDateTimeCommand(dateTime) {
 	var command = new Struct().word8('packetType').word8('stationNum').word8('length').word8('commandCode').word8('year').word8('month').word8('day').word8('hour').word8('minute').word8('second').word8('checkSum');
@@ -138,7 +138,7 @@ function parseSetDateTimeResponse(buffer) {
 NfcClient.prototype.getFirmwareVersion = function(callback) {
 	var self = this;
 	self.callCommand(buildGetFirmwareVersionCommand, parseGetFirmwareVersionResponse, callback);
-}
+};
 
 function buildGetFirmwareVersionCommand() {
 	return buildSimpleCommand(0xA5, 0xFF, 2, 0x7A, 0); 
@@ -147,11 +147,11 @@ function buildGetFirmwareVersionCommand() {
 function parseGetFirmwareVersionResponse(buffer) {
 
 	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').array(
-			"responseData", 'word8', 4).word8('checkSum');
+			"responseData", 4, 'word8').word8('checkSum');
 
 	response._setBuff(buffer);
 	return response;
-};
+}
 
 // parse completion response
 function parseCompletionResponse(buffer) {
@@ -167,7 +167,7 @@ function parseCompletionResponse(buffer) {
 NfcClient.prototype.resetReader = function(callback) {
 	var self = this;
 	self.callCommand(buildResetReaderCommand, parseCompletionResponse, callback);
-}
+};
 
 function buildResetReaderCommand() {
 	return buildSimpleCommand(0xA5, 0xFF, 2, 0x75, 0); 
@@ -177,7 +177,7 @@ function buildResetReaderCommand() {
 NfcClient.prototype.stopRFWork = function(callback) {
 	var self = this;
 	self.callCommand(buildStopRFWorkCommand, parseCompletionResponse, callback);
-}
+};
 
 function buildStopRFWorkCommand() {
 	return buildSimpleCommand(0xA5, 0xFF, 2, 0x60, 0); 
@@ -187,7 +187,7 @@ function buildStopRFWorkCommand() {
 NfcClient.prototype.startRFWork = function(callback) {
 	var self = this;
 	self.callCommand(buildStartRFWorkCommand, parseCompletionResponse, callback);
-}
+};
 
 function buildStartRFWorkCommand() {
 	return buildSimpleCommand(0xA5, 0xFF, 2, 0x62, 0); 
@@ -197,7 +197,7 @@ function buildStartRFWorkCommand() {
 NfcClient.prototype.getTrigState = function(callback) {
 	var self = this;
 	self.callCommand(buildGetTrigStateCommand, parseGetTrigStateResponse, callback);
-}
+};
 
 function buildGetTrigStateCommand() {
 	return buildSimpleCommand(0xA5, 0xFF, 2, 0x56, 0); 
@@ -206,7 +206,7 @@ function buildGetTrigStateCommand() {
 function parseGetTrigStateResponse(buffer) {
 
 	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').word8(
-			'responseData').word8('checkSum');
+			'state').word8('checkSum');
 
 	response._setBuff(buffer);
 	return response;
@@ -216,7 +216,7 @@ function parseGetTrigStateResponse(buffer) {
 NfcClient.prototype.getRelayState = function(callback) {
 	var self = this;
 	self.callCommand(buildGetRelayStateCommand, parseGetRelayStateResponse, callback);
-}
+};
 
 function buildGetRelayStateCommand() {
 	return buildSimpleCommand(0xA5, 0xFF, 2, 0x58, 0); 
@@ -237,7 +237,7 @@ NfcClient.prototype.setRelayState = function(callback, relayState) {
 
 	var self = this;
 	self.callCommand(buildSetRelayStateCommand, parseCompletionResponse, callback, relayState);
-}
+};
 
 function buildSetRelayStateCommand(relayState) {
 	var command = new Struct().word8('packetType').word8('stationNum').word8('length').word8('commandCode').word8('mask').word8('state').word8('checkSum');
@@ -252,7 +252,7 @@ function buildSetRelayStateCommand(relayState) {
 	proxy.length = 4;
 	proxy.commandCode = 0x57;
 	proxy.mask = 0x03;
-	proxy.state = 0 + (relayState.relay1?1:0) + (relayState.relay2?2:0);
+	proxy.state = (relayState.relay1 ? 1 : 0) + (relayState.relay2 ? 2 : 0);
 	//console.log(buffer);
 
 	return command;
@@ -262,7 +262,7 @@ function buildSetRelayStateCommand(relayState) {
 NfcClient.prototype.masterAcknowledge = function(callback) {
 	var self = this;
 	self.callCommand(buildMasterAcknowledgeCommand, null, callback);
-}
+};
 
 function buildMasterAcknowledgeCommand() {
 	return buildSimpleCommand(0xA5, 0xFF, 2, 0x80, 0); 

@@ -5,7 +5,7 @@ var PORT = 4001;
 
 var nfcClient = new NfcClient(IP, PORT);
 
-exports.view = function(req, res, next) {
+exports.view = function(req, res) {
 
 	res.render('nfc', {
 		title : 'NFC'
@@ -14,13 +14,23 @@ exports.view = function(req, res, next) {
 
 exports.getDateTime = function(req, res, next) {
 
-	nfcClient.getDateTime(function(data) {
-		if (data instanceof Error) {
-			return next(data);
+	nfcClient.getDateTime(function(error, command, response) {
+		if (error) {
+			return next(error);
 		}
+		var getDateTime = {};
+		getDateTime.year = response.fields.responseData[0] + 2008;
+		getDateTime.month = response.fields.responseData[1];
+		getDateTime.day = response.fields.responseData[2];
+		getDateTime.hour = response.fields.responseData[3];
+		getDateTime.minute = response.fields.responseData[4];
+		getDateTime.second = response.fields.responseData[5];
+
 		res.render('nfc', {
 			title : 'NFC',
-			getDateTime : data
+			command: command,
+			response: response,
+			getDateTime : getDateTime
 		});
 	});
 
@@ -32,18 +42,18 @@ exports.setDateTime = function(req, res, next) {
 
 	//validation
 	req.assert('dateTime', 'DateTime is required').notEmpty();
-	req.assert('dateTime', 'Duzina od DateTime nije dobra. Mora biti 12').len(12, 12);
+	req.assert('dateTime', 'Duzina od DateTime nije dobra. Mora biti 14').len(14, 14);
 	req.assert('dateTime', 'DateTime mora biti sastavljen od cifara').matches(/[0-9]/);
 
 	var errors = req.validationErrors();
 
-	var dateTimeObject = {};
-	dateTimeObject.year = dateTime.substr(0, 2);
-	dateTimeObject.month = dateTime.substr(2, 2);
-	dateTimeObject.day = dateTime.substr(4, 2);
-	dateTimeObject.hour = dateTime.substr(6, 2);
-	dateTimeObject.minute = dateTime.substr(8, 2);
-	dateTimeObject.second = dateTime.substr(10, 2);
+	var setDateTime = {};
+	setDateTime.year = dateTime.substr(0, 4) - 2008;
+	setDateTime.month = dateTime.substr(4, 2);
+	setDateTime.day = dateTime.substr(6, 2);
+	setDateTime.hour = dateTime.substr(8, 2);
+	setDateTime.minute = dateTime.substr(10, 2);
+	setDateTime.second = dateTime.substr(12, 2);
 
 	if (errors) {
 		req.flash('errors', errors);
@@ -53,28 +63,33 @@ exports.setDateTime = function(req, res, next) {
 		});
 	} else {
 
-		nfcClient.setDateTime(function(data) {
-			if (data instanceof Error) {
-				return next(data);
+		nfcClient.setDateTime(function(error, command, response) {
+			if (error) {
+				return next(error);
 			}
 			res.render('nfc', {
 				title : 'NFC',
-				setDateTime : data
+				command: command,
+				response: response,
+				dateTime : dateTime,
+				setDateTime: "DONE"
 			});
-		}, dateTimeObject);
+		}, setDateTime);
 	}
 
 };
 
 exports.startRFWork = function(req, res, next) {
 
-	nfcClient.startRFWork(function(data) {
-		if (data instanceof Error) {
-			return next(data);
+	nfcClient.startRFWork(function(error, command, response) {
+		if (error) {
+			return next(error);
 		}
 		res.render('nfc', {
 			title : 'NFC',
-			startRFWork : data
+			command: command,
+			response: response,
+			startRFWork : "DONE"
 		});
 	});
 
@@ -82,27 +97,30 @@ exports.startRFWork = function(req, res, next) {
 
 exports.stopRFWork = function(req, res, next) {
 
-	nfcClient.stopRFWork(function(data) {
-		if (data instanceof Error) {
-			return next(data);
+	nfcClient.stopRFWork(function(error, command, response) {
+		if (error) {
+			return next(error);
 		}
 		res.render('nfc', {
 			title : 'NFC',
-			stopRFWork : data
+			command: command,
+			response: response,
+			stopRFWork : "DONE"
 		});
 	});
-
 };
 
 exports.resetReader = function(req, res, next) {
 
-	nfcClient.resetReader(function(data) {
-		if (data instanceof Error) {
-			return next(data);
+	nfcClient.resetReader(function(error, command, response) {
+		if (error) {
+			return next(error);
 		}
 		res.render('nfc', {
 			title : 'NFC',
-			resetReader : data
+			command: command,
+			response: response,
+			resetReader : "DONE"
 		});
 	});
 
@@ -110,13 +128,22 @@ exports.resetReader = function(req, res, next) {
 
 exports.getFirmwareVersion = function(req, res, next) {
 
-	nfcClient.getFirmwareVersion(function(data) {
-		if (data instanceof Error) {
-			return next(data);
+	nfcClient.getFirmwareVersion(function(error, command, response) {
+		if (error) {
+			return next(error);
 		}
+
+		var getFirmwareVersion = {};
+		getFirmwareVersion.flag = response.fields.responseData[0];
+		getFirmwareVersion.major = response.fields.responseData[1];
+		getFirmwareVersion.minor = response.fields.responseData[2];
+		getFirmwareVersion.release = response.fields.responseData[3];
+
 		res.render('nfc', {
 			title : 'NFC',
-			getFirmwareVersion : data
+			command: command,
+			response: response,
+			getFirmwareVersion : getFirmwareVersion
 		});
 	});
 
@@ -124,13 +151,19 @@ exports.getFirmwareVersion = function(req, res, next) {
 
 exports.getTrigState = function(req, res, next) {
 
-	nfcClient.getTrigState(function(data) {
-		if (data instanceof Error) {
-			return next(data);
+	nfcClient.getTrigState(function(error, command, response) {
+		if (error) {
+			return next(error);
 		}
+
+		var getTrigState = {};
+		getTrigState.state = response.fields.state;
+
 		res.render('nfc', {
 			title : 'NFC',
-			getTrigState : data
+			command: command,
+			response: response,
+			getTrigState : getTrigState
 		});
 	});
 
@@ -138,13 +171,19 @@ exports.getTrigState = function(req, res, next) {
 
 exports.getRelayState = function(req, res, next) {
 
-	nfcClient.getRelayState(function(data) {
-		if (data instanceof Error) {
-			return next(data);
+	nfcClient.getRelayState(function(error, command, response) {
+		if (error) {
+			return next(error);
 		}
+		var getRelayState = {};
+		getRelayState.relay1 = response.fields.state & 0x01;
+		getRelayState.relay2 = response.fields.state & 0x02;
+
 		res.render('nfc', {
 			title : 'NFC',
-			getRelayState : data
+			command: command,
+			response: response,
+			getRelayState : getRelayState
 		});
 	});
 
@@ -157,30 +196,33 @@ exports.setRelayState = function(req, res, next) {
 	var relay2 = req.query.relay2;
 	console.log("relay2 request param: " + relay2);
 
-	var relayState = {};
-	relayState.relay1 = relay1?true:false;
-	relayState.relay2 = relay2?true:false;
+	var setRelayState = {};
+	setRelayState.relay1 = relay1 ? true : false;
+	setRelayState.relay2 = relay2 ? true : false;
 
-    nfcClient.setRelayState(function(data) {
-		if (data instanceof Error) {
-			return next(data);
+    nfcClient.setRelayState(function(error, command, response) {
+		if (error) {
+			return next(error);
 		}
 		res.render('nfc', {
 			title : 'NFC',
-			setRelayState : data
+			command: command,
+			response: response,
+			setRelayState : setRelayState
 		});
-	}, relayState);
+	}, setRelayState);
 
 };
 
 exports.masterAcknowledge = function(req, res, next) {
 
-	nfcClient.masterAcknowledge(function(data) {
-		if (data instanceof Error) {
-			return next(data);
+	nfcClient.masterAcknowledge(function(error, command) {
+		if (error) {
+			return next(error);
 		}
 		res.render('nfc', {
 			title : 'NFC',
+			command: command,
 			masterAcknowledge : "DONE"
 		});
 	});
