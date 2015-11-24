@@ -226,5 +226,58 @@ exports.masterAcknowledge = function(req, res, next) {
 			masterAcknowledge : "DONE"
 		});
 	});
+};
+
+exports.getParameterRSSI = function(req, res, next) {
+
+	nfcClient.getParameterRSSI(function(error, command, response) {
+		if (error) {
+			return next(error);
+		}
+		var getParameterRSSI = {};
+		getParameterRSSI.addrH = response.fields.addrH;
+		getParameterRSSI.addrL = response.fields.addrL;
+		getParameterRSSI.parameter = response.fields.parameter;
+
+		res.render('nfc', {
+			title : 'NFC',
+			command: command,
+			response: response,
+			getParameterRSSI : getParameterRSSI
+		});
+	});
+
+};
+
+exports.setParameterRSSI = function(req, res, next) {
+	var parameterRSSI = req.query.parameterRSSI;
+	console.log("parameterRSSI request param: " + parameterRSSI);
+
+	//validation
+	req.assert('parameterRSSI', 'parameterRSSI is required').notEmpty();
+
+	var errors = req.validationErrors();
+
+	if (errors) {
+		req.flash('errors', errors);
+		res.render('nfc', {
+			title: 'NFC',
+			parameterRSSI: parameterRSSI
+		});
+	} else {
+
+		nfcClient.setParameterRSSI(function(error, command, response) {
+			if (error) {
+				return next(error);
+			}
+			res.render('nfc', {
+				title : 'NFC',
+				command: command,
+				response: response,
+				parameterRSSI : parameterRSSI,
+				setParameterRSSI: "DONE"
+			});
+		}, parameterRSSI);
+	}
 
 };

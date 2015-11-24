@@ -49,8 +49,9 @@
 		"getTrigState":"Get trig state",
 		"getRelayState":"Get relay state",
 	    "setRelayState":"Set relay state",
-		"masterAcknowledge":"Master acknowledge"			
-		
+		"masterAcknowledge":"Master acknowledge",
+        "getParameterRSSI":"Get parameter RSSI",
+	    "setParameterRSSI":"Set parameter RSSI"
 	},
 	"index":{
 		"title":"Dobrodošli u aSmartPark",
