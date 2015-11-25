@@ -21,6 +21,20 @@ block content
       =t('nfc.title')
     table.table: tbody
       tr
+        td= t('nfc.getParameterRSSI')
+        td: a.btn.btn-default(href='/nfc/getParameterRSSI')= t('nfc.getParameterRSSI')
+        td= getParameterRSSI ? getParameterRSSI.parameter : ""
+      tr
+        td= t('nfc.setParameterRSSI')
+        td
+          form.form-inline(action='/nfc/setParameterRSSI' method="get")
+            - var n = -110
+            select.form-control(name="parameterRSSI" value="#{parameterRSSI ? parameterRSSI : ''}")
+              while n <= -10
+                option= n++
+            button.btn.btn-default(type="submit")= t('nfc.setParameterRSSI')
+        td= setParameterRSSI ? setParameterRSSI : ""
+      tr
         td= t('nfc.getDateTime')
         td: a.btn.btn-default(href='/nfc/getDateTime')= t('nfc.getDateTime')
         td= getDateTime ? "" + getDateTime.year + "-" + getDateTime.month + "-" + getDateTime.day + " " + getDateTime.hour + ":" + getDateTime.minute + ":" + getDateTime.second : ""
@@ -91,4 +105,5 @@ block content
         td= t('nfc.masterAcknowledge')
         td: a.btn.btn-default(href='/nfc/masterAcknowledge')= t('nfc.masterAcknowledge')
         td= masterAcknowledge ? masterAcknowledge : ""
+
 
