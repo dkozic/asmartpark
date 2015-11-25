@@ -77,6 +77,16 @@ function buildSimpleCommand(packetType, stationNum, length, commandCode, checkSu
 	return command;
 }
 
+// parse completion response
+function parseCompletionResponse(buffer) {
+
+	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('commandCode').word8(
+		'status').word8('checkSum');
+
+	response._setBuff(buffer);
+	return response;
+}
+
 // GetDateTime
 NfcClient.prototype.getDateTime = function(callback) {
 	var self = this;
@@ -100,7 +110,7 @@ NfcClient.prototype.setDateTime = function(callback, dateTime) {
 	console.log("setDateTime input: " + JSON.stringify(dateTime));
 
 	var self = this;
-	self.callCommand(buildSetDateTimeCommand, parseSetDateTimeResponse, callback, dateTime);
+	self.callCommand(buildSetDateTimeCommand, parseCompletionResponse, callback, dateTime);
 };
 
 function buildSetDateTimeCommand(dateTime) {
@@ -127,14 +137,6 @@ function buildSetDateTimeCommand(dateTime) {
 	return command;	
 }
 
-function parseSetDateTimeResponse(buffer) {
-	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').array(
-			"responseData", 'word8', 8).word8('checkSum');
-
-	response._setBuff(buffer);
-	return response;
-}
-
 // GetFirmwareVersion
 NfcClient.prototype.getFirmwareVersion = function(callback) {
 	var self = this;
@@ -149,16 +151,6 @@ function parseGetFirmwareVersionResponse(buffer) {
 
 	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').array(
 			"responseData", 4, 'word8').word8('checkSum');
-
-	response._setBuff(buffer);
-	return response;
-}
-
-// parse completion response
-function parseCompletionResponse(buffer) {
-
-	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('commandCode').word8(
-			'status').word8('checkSum');
 
 	response._setBuff(buffer);
 	return response;
@@ -254,6 +246,7 @@ function buildSetRelayStateCommand(relayState) {
 	proxy.commandCode = 0x57;
 	proxy.mask = 0x03;
 	proxy.state = (relayState.relay1 ? 1 : 0) + (relayState.relay2 ? 2 : 0);
+	proxy.checkSum = 0;
 	//console.log(buffer);
 
 	return command;
@@ -267,6 +260,69 @@ NfcClient.prototype.masterAcknowledge = function(callback) {
 
 function buildMasterAcknowledgeCommand() {
 	return buildSimpleCommand(0xA5, 0xFF, 2, 0x80, 0); 
+}
+
+// GetParameterRSSI
+NfcClient.prototype.getParameterRSSI = function(callback) {
+	var self = this;
+	self.callCommand(buildGetParameterRSSICommand, parseGetParameterRSSIResponse, callback);
+};
+
+function buildGetParameterRSSICommand() {
+	var command = new Struct().word8('packetType').word8('stationNum').word8('length').word8('commandCode').word8('parameterCount').word8('addrH').word8('addrL').word8('checkSum');
+	command.allocate();
+	var buffer = command.buffer();
+	buffer.fill(0);
+	// console.log(buffer);
+
+	var proxy = command.fields;
+	proxy.packetType = 0xA5;
+	proxy.stationNum = 0xFF;
+	proxy.length = 5;
+	proxy.commandCode = 0x73;
+	proxy.parameterCount = 0x01;
+	proxy.addrH = 0x00;
+	proxy.addrL = 0xA1;
+	proxy.checkSum = 0;
+
+	return command;
+}
+
+function parseGetParameterRSSIResponse(buffer) {
+	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').word8('parameterCount').word8('addrH').word8('addrL').word8Sle('parameter').word8('checkSum');
+
+	response._setBuff(buffer);
+	return response;
+}
+
+// SetParameterRSSI
+NfcClient.prototype.setParameterRSSI = function(callback, parameterRSSI) {
+	console.log("setParameterRSSI input: " + JSON.stringify(parameterRSSI));
+
+	var self = this;
+	self.callCommand(buildSetParameterRSSICommand, parseCompletionResponse, callback, parameterRSSI);
+};
+
+function buildSetParameterRSSICommand(parameterRSSI) {
+	var command = new Struct().word8('packetType').word8('stationNum').word8('length').word8('commandCode').word8('parameterCount').word8('addrH').word8('addrL').word8('parameter').word8('checkSum');
+	command.allocate();
+	var buffer = command.buffer();
+	buffer.fill(0);
+	// console.log(buffer);
+
+	var proxy = command.fields;
+	proxy.packetType = 0xA5;
+	proxy.stationNum = 0xFF;
+	proxy.length = 8;
+	proxy.commandCode = 0x72;
+	proxy.parameterCount = 0x01;
+	proxy.addrH = 0x00;
+	proxy.addrL = 0xA1;
+	proxy.parameter = parameterRSSI;
+	proxy.checkSum = 0;
+	//console.log(buffer);
+
+	return command;
 }
 
 module.exports = NfcClient;

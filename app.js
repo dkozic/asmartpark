@@ -78,6 +78,8 @@ app.get('/nfc/getTrigState', nfc.getTrigState);
 app.get('/nfc/getRelayState', nfc.getRelayState);
 app.get('/nfc/setRelayState', nfc.setRelayState);
 app.get('/nfc/masterAcknowledge', nfc.masterAcknowledge);
+app.get('/nfc/getParameterRSSI', nfc.getParameterRSSI);
+app.get('/nfc/setParameterRSSI', nfc.setParameterRSSI);
 
 setup.init(app, io);
 
