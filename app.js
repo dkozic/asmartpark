@@ -80,6 +80,7 @@ app.get('/nfc/setRelayState', nfc.setRelayState);
 app.get('/nfc/masterAcknowledge', nfc.masterAcknowledge);
 app.get('/nfc/getParameterRSSI', nfc.getParameterRSSI);
 app.get('/nfc/setParameterRSSI', nfc.setParameterRSSI);
+app.get('/nfc/getIDBuffer', nfc.getIDBuffer);
 
 setup.init(app, io);
 

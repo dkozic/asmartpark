@@ -323,6 +323,16 @@ function buildSetParameterRSSICommand(parameterRSSI) {
 	//console.log(buffer);
 
 	return command;
+	
+	//setIDBuffer
+	NfcClient.prototype.setIDBuffer = function(callback) {
+		var self = this;
+		self.callCommand(buildGetIDBuffer, null, callback);
+	};
+
+	function buildGetIDBufferCommand() {
+		return buildSimpleCommand(0xA5, 0xFF, 4, 0x3c, 0); 
+	}
 }
 
 module.exports = NfcClient;

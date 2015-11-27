@@ -282,3 +282,17 @@ exports.setParameterRSSI = function(req, res, next) {
 
 };
 
+exports.getIDBuffer = function(req, res, next) {
+
+	nfcClient.getIDBuffer(function(error, command) {
+		if (error) {
+			return next(error);
+		}
+		res.render('nfc', {
+			title : 'NFC',
+			command: command,
+			getIDBuffer : "DONE"
+		});
+	});
+};
+
