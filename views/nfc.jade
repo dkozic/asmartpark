@@ -21,6 +21,17 @@ block content
       =t('nfc.title')
     table.table: tbody
       tr
+        td= t('nfc.getParameterRefresh')
+        td: a.btn.btn-default(href='/nfc/getParameterRefresh')= t('nfc.getParameterRefresh')
+        td= getParameterRefresh ? getParameterRefresh.parameter : ""
+      tr
+        td= t('nfc.setParameterRefresh')
+        td
+          form.form-inline(action='/nfc/setParameterRefresh' method="get")
+            input.form-control(type='text' name="parameterRefresh" value="#{parameterRefresh? parameterRefresh: ''}")
+            button.btn.btn-default(type="submit")= t('nfc.setParameterRefresh')
+        td= setParameterRefresh ? setParameterRefrsh : ""
+      tr
         td= t('nfc.getParameterRSSI')
         td: a.btn.btn-default(href='/nfc/getParameterRSSI')= t('nfc.getParameterRSSI')
         td= getParameterRSSI ? getParameterRSSI.parameter : ""

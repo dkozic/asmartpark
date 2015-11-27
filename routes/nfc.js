@@ -281,3 +281,60 @@ exports.setParameterRSSI = function(req, res, next) {
 	}
 
 };
+
+exports.getParameterRefresh = function(req, res, next) {
+
+	nfcClient.getParameterRefresh(function(error, command, response) {
+		if (error) {
+			return next(error);
+		}
+		var getParameterRefresh = {};
+		getParameterRefresh.addrH = response.fields.addrH;
+		getParameterRefresh.addrL = response.fields.addrL;
+		getParameterRefresh.parameter = response.fields.parameter;
+
+		res.render('nfc', {
+			title : 'NFC',
+			command: command,
+			response: response,
+			getParameterRefresh : getParameterRefresh
+		});
+	});
+
+};
+
+exports.setParameterRefresh = function(req, res, next) {
+	var parameterRefresh = req.query.parameterRefresh;
+	console.log("parameterRefresh request param: " + parameterRefresh);
+
+	//validation
+	req.assert('parameterRefresh', 'Refresh interval je obavezan').notEmpty();
+	req.assert('parameterRefresh', 'Duzina od Refresh interval nije dobra. Mora biti od 1 do 5').len(1, 5);
+	req.assert('parameterRefresh', 'Refresh interval mora biti sastavljen od cifara').matches(/[0-9]/);
+	req.assert('parameterRefresh', 'Refresh interval mora biti ceo broj').isInt();
+
+	var errors = req.validationErrors();
+
+	if (errors) {
+		req.flash('errors', errors);
+		res.render('nfc', {
+			title: 'NFC',
+			parameterRefresh: parameterRefresh
+		});
+	} else {
+
+		nfcClient.setParameterRefresh(function(error, command, response) {
+			if (error) {
+				return next(error);
+			}
+			res.render('nfc', {
+				title : 'NFC',
+				command: command,
+				response: response,
+				parameterRefresh : parameterRefresh,
+				setParameterRefresh: "DONE"
+			});
+		}, parameterRefresh);
+	}
+
+};

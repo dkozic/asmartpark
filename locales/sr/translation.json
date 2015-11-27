@@ -51,7 +51,9 @@
 	    "setRelayState":"Set relay state",
 		"masterAcknowledge":"Master acknowledge",
         "getParameterRSSI":"Get parameter RSSI",
-	    "setParameterRSSI":"Set parameter RSSI"
+	    "setParameterRSSI":"Set parameter RSSI",
+        "getParameterRefresh":"Get Refresh interval",
+	    "setParameterRefresh":"Set Refresh interval"
 	},
 	"index":{
 		"title":"Dobrodošli u aSmartPark",
