@@ -52,7 +52,7 @@
 		"masterAcknowledge":"Master acknowledge",
         "getParameterRSSI":"Get parameter RSSI",
 	    "setParameterRSSI":"Set parameter RSSI",
-	    "getIDBuffer":"Get ID Buffer"
+	    "getIdBuffer":"Get ID Buffer"
 	    
 	},
 	"index":{
