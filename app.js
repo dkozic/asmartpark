@@ -82,6 +82,7 @@ app.get('/nfc/getParameterRSSI', nfc.getParameterRSSI);
 app.get('/nfc/setParameterRSSI', nfc.setParameterRSSI);
 app.get('/nfc/getParameterRefresh', nfc.getParameterRefresh);
 app.get('/nfc/setParameterRefresh', nfc.setParameterRefresh);
+app.get('/nfc/getIDBuffer', nfc.getIDBuffer);
 
 setup.init(app, io);
 

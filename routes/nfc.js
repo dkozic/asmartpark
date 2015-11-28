@@ -338,3 +338,32 @@ exports.setParameterRefresh = function(req, res, next) {
 	}
 
 };
+
+exports.getIDBuffer = function(req, res, next) {
+
+	nfcClient.getIDBuffer(function(error, command, response) {
+		if (error) {
+			return next(error);
+		}
+		var getIDBuffer = {};
+		getIDBuffer.tagCount = response.fields.tagCount;
+		if (getIDBuffer.tagCount == 1) {
+			getIDBuffer.tagResponseData = {};
+			getIDBuffer.tagResponseData.tagType = response.fields.tagResponseData[0].tagType;
+			getIDBuffer.tagResponseData.tagState1 = response.fields.tagResponseData[0].tagState1;
+			getIDBuffer.tagResponseData.tagState2 = response.fields.tagResponseData[0].tagState2;
+			getIDBuffer.tagResponseData.tagData = response.fields.tagResponseData[0].tagData;
+		} else {
+			getIDBuffer.tagResponseData = {};
+		}
+
+		res.render('nfc', {
+			title : 'NFC',
+			command: command,
+			response: response,
+			getIDBuffer : getIDBuffer
+		});
+	});
+
+};
+

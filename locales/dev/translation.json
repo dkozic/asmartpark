@@ -53,7 +53,8 @@
 	    "getParameterRSSI":"Get parameter RSSI",
 	    "setParameterRSSI":"Set parameter RSSI",
 	    "getParameterRefresh":"Get Refresh interval",
-	    "setParameterRefresh":"Set Refresh interval"
+	    "setParameterRefresh":"Set Refresh interval",
+	    "getIDBuffer":"Get ID Buffer"
 	},
 	"index":{
 		"title":"Welcome to aSmartPark",

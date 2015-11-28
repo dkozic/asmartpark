@@ -21,6 +21,10 @@ block content
       =t('nfc.title')
     table.table: tbody
       tr
+        td= t('nfc.getIDBuffer')
+        td: a.btn.btn-default(href='/nfc/getIDBuffer')= t('nfc.getIDBuffer')
+        td= getIDBuffer ? JSON.stringify(getIDBuffer) : ""
+      tr
         td= t('nfc.getParameterRefresh')
         td: a.btn.btn-default(href='/nfc/getParameterRefresh')= t('nfc.getParameterRefresh')
         td= getParameterRefresh ? getParameterRefresh.parameter : ""
