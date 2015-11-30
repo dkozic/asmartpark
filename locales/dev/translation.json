@@ -11,6 +11,7 @@
 		"home":"Home",
 		"dashboard":"Dashboard",
 		"nfc":"NFC",
+		"documentation":"documentation",
 		"about":"About"
 	},
 	"common":{
@@ -53,6 +54,9 @@
 	    "getParameterRSSI":"Get parameter RSSI",
 	    "setParameterRSSI":"Set parameter RSSI"
 	    "getIdBuffer":"Get ID Buffer"
+	},
+	"documentation":{
+		"title":"All documentation for RFID"
 	},
 	"index":{
 		"title":"Welcome to aSmartPark",

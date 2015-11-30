@@ -15,6 +15,7 @@ var dashboard = require('./routes/dashboard');
 var history = require('./routes/history');
 var about = require('./routes/about');
 var nfc = require('./routes/nfc');
+var documentation = require('./routes/documentation');
 
 var setup = require('./setup');
 
@@ -67,6 +68,7 @@ app.get('/', routes.index);
 app.get('/about', about.view);
 app.get('/dashboard', dashboard.view);
 app.get('/history/:id', history.list);
+app.get('/documentation', documentation.view);
 app.get('/nfc', nfc.view);
 app.get('/nfc/getDateTime', nfc.getDateTime);
 app.get('/nfc/setDateTime', nfc.setDateTime);

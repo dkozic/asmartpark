@@ -11,6 +11,7 @@
 		"home":"Početna",
 		"dashboard":"Pregled",
 		"nfc":"NFC",
+		"documentation":"dokumentacija",
 		"about":"O nama"
 	},
 	"common":{
@@ -52,8 +53,10 @@
 		"masterAcknowledge":"Master acknowledge",
         "getParameterRSSI":"Get parameter RSSI",
 	    "setParameterRSSI":"Set parameter RSSI",
-	    "getIdBuffer":"Get ID Buffer"
-	    
+	    "getIdBuffer":"Get ID Buffer"	    	
+	},
+	"documentation":{
+		"title":"Sva dokumentacija za RFID"	    
 	},
 	"index":{
 		"title":"Dobrodošli u aSmartPark",
