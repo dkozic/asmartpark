@@ -14,8 +14,8 @@ var routes = require('./routes');
 var dashboard = require('./routes/dashboard');
 var history = require('./routes/history');
 var about = require('./routes/about');
-var nfc = require('./routes/nfc');
 var documentation = require('./routes/documentation');
+var nfc = require('./routes/nfc');
 
 var setup = require('./setup');
 
