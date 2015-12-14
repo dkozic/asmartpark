@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 extends layout
 
 block title
@@ -14,3 +15,19 @@ block content
 
 
 
+=======
+extends layout
+
+block title
+  h2
+    = t('documentation.title')
+ 
+block content
+  p
+    ul.list-group
+      li.list-group-item: a(href="/doc/kinez-prevod.pdf" target="_blank")
+        |Kinez
+      li.list-group-item: a(href="/doc/CommunicationProtocolInstructionOfActiveReader.pdf" target="_blank")
+        |Communication protocol
+
+>>>>>>> refs/remotes/origin/drazen

@@ -322,6 +322,7 @@ function buildSetParameterRSSICommand(parameterRSSI) {
 	proxy.checkSum = 0;
 	//console.log(buffer);
 
+<<<<<<< HEAD
 	return command;
 	
 	//getIdBuffer
@@ -344,5 +345,113 @@ function buildSetParameterRSSICommand(parameterRSSI) {
 	}
 }
 		
+=======
+	return command;
+}
+
+// GetParameterRefresh
+NfcClient.prototype.getParameterRefresh = function(callback) {
+	var self = this;
+	self.callCommand(buildGetParameterRefreshCommand, parseGetParameterRefreshResponse, callback);
+};
+
+function buildGetParameterRefreshCommand() {
+	var command = new Struct().word8('packetType').word8('stationNum').word8('length').word8('commandCode').word8('parameterCount').word8('addrH').word8('addrL').word8('checkSum');
+	command.allocate();
+	var buffer = command.buffer();
+	buffer.fill(0);
+	// console.log(buffer);
+
+	var proxy = command.fields;
+	proxy.packetType = 0xA5;
+	proxy.stationNum = 0xFF;
+	proxy.length = 5;
+	proxy.commandCode = 0x73;
+	proxy.parameterCount = 0x02;
+	proxy.addrH = 0x95;
+	proxy.addrL = 0x94;
+	proxy.checkSum = 0;
+
+	return command;
+}
+
+function parseGetParameterRefreshResponse(buffer) {
+	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').word8('parameterCount').word8('addrH').word8('addrL').word16Ube('parameter').word8('checkSum');
+
+	response._setBuff(buffer);
+	return response;
+}
+
+// SetParameterRefresh
+NfcClient.prototype.setParameterRefresh = function(callback, parameterRefresh) {
+	console.log("setParameterRefresh input: " + JSON.stringify(parameterRefresh));
+
+	var self = this;
+	self.callCommand(buildSetParameterRefreshCommand, parseCompletionResponse, callback, parameterRefresh);
+};
+
+function buildSetParameterRefreshCommand(parameterRefresh) {
+	var command = new Struct().word8('packetType').word8('stationNum').word8('length').word8('commandCode').word8('parameterCount').word8('addrH').word8('addrL').word16Ube('parameter').word8('checkSum');
+	command.allocate();
+	var buffer = command.buffer();
+	buffer.fill(0);
+	// console.log(buffer);
+
+	var proxy = command.fields;
+	proxy.packetType = 0xA5;
+	proxy.stationNum = 0xFF;
+	proxy.length = 7;
+	proxy.commandCode = 0x72;
+	proxy.parameterCount = 0x02;
+	proxy.addrH = 0x95;
+	proxy.addrL = 0x94;
+	proxy.parameter = parameterRefresh;
+	proxy.checkSum = 0;
+	//console.log(buffer);
+
+	return command;
+}
+
+// GetIDBuffer
+NfcClient.prototype.getIDBuffer = function(callback) {
+	var self = this;
+	self.callCommand(buildGetIDBufferCommand, parseGetIDBufferResponse, callback);
+};
+
+function buildGetIDBufferCommand() {
+	var command = new Struct().word8('packetType').word8('stationNum').word8('length').word8('commandCode').word8('operationType').word8('tagCount').word8('checkSum');
+	command.allocate();
+	var buffer = command.buffer();
+	buffer.fill(0);
+	// console.log(buffer);
+
+	var proxy = command.fields;
+	proxy.packetType = 0xA5;
+	proxy.stationNum = 0xFF;
+	proxy.length = 4;
+	proxy.commandCode = 0x3c;
+	proxy.operationType = 0x02;
+	proxy.tagCount = 0xFF;
+	proxy.checkSum = 0;
+
+	return command;
+}
+
+function parseGetIDBufferResponse(buffer) {
+	var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').word8('operationType').word8('tagCount').word8('moreId');
+	response._setBuff(buffer);
+
+	var length = response.fields.length;
+	var tagCount = response.fields.tagCount;
+	var k = (length - 5) / tagCount;
+
+	var tagResponseData = new Struct().word8("tagType").array('tagData', k - 3, 'word8').word8("tagState1").word8("tagState2");
+	var response1 = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').word8('operationType').word8('tagCount').word8('moreId').array("tagResponseData", tagCount, tagResponseData).word8('checkSum');
+	response1._setBuff(buffer);
+
+	return response1;
+}
+
+>>>>>>> refs/remotes/origin/drazen
 module.exports = NfcClient;
 

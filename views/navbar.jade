@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 block navbar
   nav.navbar.navbar-inverse
    div.container
@@ -35,3 +36,42 @@ block navbar
            |&nbsp;
            = t('navbar.about')
 
+=======
+block navbar
+  nav.navbar.navbar-default
+   div.container
+     div.navbar-header
+       button.navbar-toggle(type="button" data-toggle="collapse" data-target="#rightNavbar")
+         span.icon-bar
+         span.icon-bar
+         span.icon-bar
+       - var brandlink = t('navbar.brandlink')  
+       a.navbar-brand(href="#{brandlink}", target="_blank")
+         = t('navbar.brand')
+         
+     div.collapse.navbar-collapse#rightNavbar
+       ul.nav.navbar-nav
+         li: a(href="/")
+           span.glyphicon.glyphicon-home
+           |&nbsp;
+           = t('navbar.home')
+         li: a(href="/dashboard")
+           span.glyphicon.glyphicon-th
+           |&nbsp;
+           = t('navbar.dashboard')
+         li: a(href="/nfc")
+           span.glyphicon.glyphicon-th
+           |&nbsp;
+           = t('navbar.nfc')
+         li: a(href="/documentation")
+           span.glyphicon.glyphicon-file
+           |&nbsp;
+           = t('navbar.documentation')
+
+       ul.nav.navbar-nav.navbar-right
+         li: a(href="/about")
+           span.glyphicon.glyphicon-log-in
+           |&nbsp;
+           = t('navbar.about')
+
+>>>>>>> refs/remotes/origin/drazen
