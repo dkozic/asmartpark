@@ -63,6 +63,7 @@ i18n.registerAppHelper(app);
 
 app.locals.moment = moment;
 
+
 //routes configuration
 app.get('/', routes.index);
 app.get('/about', about.view);
