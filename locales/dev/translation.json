@@ -11,7 +11,8 @@
 		"home":"Home",
 		"dashboard":"Dashboard",
 		"nfc":"NFC",
-		"about":"About"
+		"about":"About",
+	    "documentation":"Documentation"
 	},
 	"common":{
 		"showAll":"Show all",
@@ -38,6 +39,9 @@
 	"about":{
 		"title":"About aSmartPark"
 	},
+    "documentation":{
+  		"title":"Documentation"
+    },
 	"nfc":{
 		"title":"NFC",
 		"getDateTime":"Get DateTime",

@@ -11,7 +11,8 @@
 		"home":"Početna",
 		"dashboard":"Pregled",
 		"nfc":"NFC",
-		"about":"O nama"
+		"about":"O nama",
+	    "documentation":"Dokumentacija"
 	},
 	"common":{
 		"showAll":"Prikaži sve",
@@ -38,6 +39,9 @@
 	"about":{
 		"title":"About aSmartPark"
 	},
+	 "documentation":{
+		"title":"Documentation"
+     },
 	"nfc":{
 		"title":"NFC",
 		"getDateTime":"Get DateTime",

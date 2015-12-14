@@ -15,6 +15,7 @@ var dashboard = require('./routes/dashboard');
 var history = require('./routes/history');
 var about = require('./routes/about');
 var nfc = require('./routes/nfc');
+var documentation = require('./routes/documentation');
 
 var setup = require('./setup');
 
@@ -83,6 +84,7 @@ app.get('/nfc/setParameterRSSI', nfc.setParameterRSSI);
 app.get('/nfc/getParameterRefresh', nfc.getParameterRefresh);
 app.get('/nfc/setParameterRefresh', nfc.setParameterRefresh);
 app.get('/nfc/getIDBuffer', nfc.getIDBuffer);
+app.get('/documentation', documentation.view);
 
 setup.init(app, io);
 
