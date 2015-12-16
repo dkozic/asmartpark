@@ -1,81 +1,3 @@
-<<<<<<< HEAD
-{
-	"menu":{
-		"dashboard":"Dashboard",
-		"menuoption1":"Menu option 1",
-		"menuoption2":"Menu option 2",
-		"menuoption3":"Menu option 3"
-	},
-	"navbar":{
-		"brand":"aSmartPark",
-		"brandlink":"http://www.audiotexdoo.ba",
-		"home":"Home",
-		"dashboard":"Dashboard",
-		"nfc":"NFC",
-		"documentation":"documentation",
-		"about":"About"
-	},
-	"common":{
-		"showAll":"Show all",
-		"showMore":"Show more"
-	},
-	"dashboard":{
-		"title":"Dashboard",
-		"empty":"There are no parking places"
-	},
-	"history":{
-		"title":"History for parking place: __parkingplace__"
-	},
-	"parkingplace":{
-		"title":"Parking place: __parkingplace__",
-		"id":"ID",
-		"state":"State",
-		"stateTimestamp":"Timestamp"
-	},
-	"state":{
-		"-1":"UNKNOWN",
-		"0":"OFF",
-		"1":"ON"
-	},
-	"about":{
-		"title":"About aSmartPark"
-	},
-	"nfc":{
-		"title":"NFC",
-		"getDateTime":"Get DateTime",
-		"setDateTime":"Set DateTime",
-		"stopRFWork":"Stop RF work",
-		"startRFWork":"Start RF work",
-		"resetReader":"Reset reader",
-		"getFirmwareVersion":"Get firmware version",
-		"getTrigState":"Get trig state",
-		"getRelayState":"Get relay state",
-		"setRelayState":"Set relay state",
-		"masterAcknowledge":"Master acknowledge",			
-	    "getParameterRSSI":"Get parameter RSSI",
-	    "setParameterRSSI":"Set parameter RSSI"
-	    "getIdBuffer":"Get ID Buffer"
-	},
-	"documentation":{
-		"title":"All documentation for RFID"
-	},
-	"index":{
-		"title":"Welcome to aSmartPark",
-		"dashboard":"Dashboard",
-		"description":"Your view on parking..."
-	},
-	"yesno":{
-		"yes":"YES",
-		"no":"NO"
-	},
-	"404":{
-		"title":"Resource not found",
-		"message":"Sorry we can't find requested page."
-	},
-	"5xx":{
-		"title":"Internal server error: __status__"
-	}
-=======
 {
 	"menu":{
 		"dashboard":"Dashboard",
@@ -154,5 +76,4 @@
 	"5xx":{
 		"title":"Internal server error: __status__"
 	}
->>>>>>> refs/remotes/origin/drazen
 }
