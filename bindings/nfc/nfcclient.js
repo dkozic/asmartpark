@@ -10,7 +10,6 @@ function NfcClient(host, port) {
 
 util.inherits(NfcClient, EventEmitter);
 
-
 // callCommand
 NfcClient.prototype.callCommand = function(buildCommand, parseResponse, callback, buildCommandData) {
 	var self = this;
@@ -322,30 +321,6 @@ function buildSetParameterRSSICommand(parameterRSSI) {
 	proxy.checkSum = 0;
 	//console.log(buffer);
 
-<<<<<<< HEAD
-	return command;
-	
-	//getIdBuffer
-	NfcClient.prototype.getIdBuffer = function(callback) {
-		var self = this;
-		self.callCommand(buildGetIdBufferCommand, parseGetIdBufferResponse, callback);
-	};
-
-	function buildGetIdBufferCommand() {
-		return buildSimpleCommand(0xA5, 0xFF, 4, 0x3c, 0); 
-	}
-
-	function parseGetIdBufferResponse(buffer) {
-
-		var response = new Struct().word8('packetType').word8('stationNum').word8('length').word8('responseCode').word8(
-				'IdData').word8('checkSum');
-
-		response._setBuff(buffer);
-		return response;
-	}
-}
-		
-=======
 	return command;
 }
 
@@ -452,6 +427,5 @@ function parseGetIDBufferResponse(buffer) {
 	return response1;
 }
 
->>>>>>> refs/remotes/origin/drazen
 module.exports = NfcClient;
 
