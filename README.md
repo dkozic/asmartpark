@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 This is branch drazen
-=======
-This is branch master
->>>>>>> refs/remotes/origin/master
 
 # aSmartPark
 
