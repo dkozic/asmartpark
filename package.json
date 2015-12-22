@@ -8,7 +8,7 @@
   "dependencies": {
     "express": "3.2.6",
     "jade": "*",
-    "i18next": "*",
+    "i18next": "1.10.4",
     "config": "*",
     "bunyan": "*",
     "express-flash": "*",
