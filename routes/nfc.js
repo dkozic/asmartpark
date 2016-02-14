@@ -1,6 +1,6 @@
 var NfcClient = require('../bindings/nfc/nfcclient');
 
-var IP = "172.25.0.19";
+var IP = "172.25.0.196";
 var PORT = 4001;
 
 var nfcClient = new NfcClient(IP, PORT);

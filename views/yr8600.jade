@@ -1,0 +1,65 @@
+extends layout
+
+block title
+  h2
+    = t('yr8600.title')
+  if command
+    span.label.label-success#labelCommand= command.buffer().toString('hex')
+    |&nbsp;
+  if response
+    span.label.label-success#labelResponse= response.buffer().toString('hex')
+
+block content
+  if messages.errors
+    each error in messages.errors
+      div.alert.alert-danger(role="alert")
+        span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true") &nbsp;
+        = error.msg
+
+  div.panel.panel-default
+    div.panel-heading
+      =t('yr8600.title')
+    table.table: tbody
+      tr
+        td= t('yr8600.getFirmwareVersion')
+        td: a.btn.btn-default(href='/yr8600/getFirmwareVersion')= t('yr8600.getFirmwareVersion')
+        td= getFirmwareVersion ? "" + getFirmwareVersion.major + "." + getFirmwareVersion.minor : ""
+      tr
+        td= t('yr8600.getWorkAntenna')
+        td: a.btn.btn-default(href='/yr8600/getWorkAntenna')= t('yr8600.getWorkAntenna')
+        if getWorkAntenna
+          td
+            if getWorkAntenna.antenna1
+              span.label.label-success= 1
+            else
+              span.label.label-danger= 1
+            | &nbsp;
+            if getWorkAntenna.antenna2
+              span.label.label-success= 2
+            else
+              span.label.label-danger= 2
+            | &nbsp;
+            if getWorkAntenna.antenna3
+              span.label.label-success= 3
+            else
+              span.label.label-danger= 3
+            | &nbsp;
+            if getWorkAntenna.antenna4
+              span.label.label-success= 3
+            else
+              span.label.label-danger= 4
+        else
+          td= ""
+      tr
+        td= t('yr8600.setWorkAntenna')
+        td
+          form.form-inline(action='/yr8600/setWorkAntenna' method="get")
+            select.form-control(name="workAntenna" value="#{workAntenna ? workAntenna : ''}")
+                option(value='0')= "Antenna 1"
+                option(value='1')= "Antenna 2"
+                option(value='2')= "Antenna 3"
+                option(value='3')= "Antenna 4"
+            button.btn.btn-default(type="submit")= t('yr8600.setWorkAntenna')
+        td= setWorkAntenna ? setWorkAntenna.code + " - " + setWorkAntenna.description : ""
+
+

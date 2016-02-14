@@ -15,6 +15,7 @@ var dashboard = require('./routes/dashboard');
 var history = require('./routes/history');
 var about = require('./routes/about');
 var nfc = require('./routes/nfc');
+var yr8600 = require('./routes/yr8600');
 var documentation = require('./routes/documentation');
 
 var setup = require('./setup');
@@ -68,6 +69,7 @@ app.get('/', routes.index);
 app.get('/about', about.view);
 app.get('/dashboard', dashboard.view);
 app.get('/history/:id', history.list);
+app.get('/documentation', documentation.view);
 app.get('/nfc', nfc.view);
 app.get('/nfc/getDateTime', nfc.getDateTime);
 app.get('/nfc/setDateTime', nfc.setDateTime);
@@ -84,7 +86,11 @@ app.get('/nfc/setParameterRSSI', nfc.setParameterRSSI);
 app.get('/nfc/getParameterRefresh', nfc.getParameterRefresh);
 app.get('/nfc/setParameterRefresh', nfc.setParameterRefresh);
 app.get('/nfc/getIDBuffer', nfc.getIDBuffer);
-app.get('/documentation', documentation.view);
+
+app.get('/yr8600', yr8600.view);
+app.get('/yr8600/getFirmwareVersion', yr8600.getFirmwareVersion);
+app.get('/yr8600/getWorkAntenna', yr8600.getWorkAntenna);
+app.get('/yr8600/setWorkAntenna', yr8600.setWorkAntenna);
 
 setup.init(app, io);
 

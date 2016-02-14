@@ -1,79 +1,86 @@
 {
-	"menu":{
-		"dashboard":"Pregled",
-		"menuoption1":"Menu option 1",
-		"menuoption2":"Menu option 2",
-		"menuoption3":"Menu option 3"
-	},
-	"navbar":{
-		"brand":"aSmartPark",
-		"brandlink":"http://www.audiotexdoo.ba",
-		"home":"Početna",
-		"dashboard":"Pregled",
-		"nfc":"NFC",
-		"about":"O nama",
-	    "documentation":"Dokumentacija"
-	},
-	"common":{
-		"showAll":"Prikaži sve",
-		"showMore":"Detaljnije"
-	},
-	"dashboard":{
-		"title":"Pregled",
-		"empty":"Nema parking mesta"
-	},
-	"history":{
-		"title":"Istorija parking mjesta: __parkingplace__"
-	},
-	"parkingplace":{
-		"title":"Parking mjesto: __parkingplace__",
-		"id":"ID",
-		"state":"Status",
-		"stateTimestamp":"Vrijeme"
-	},
-	"state":{
-		"-1":"UNKNOWN",
-		"0":"OFF",
-		"1":"ON"
-	},
-	"about":{
-		"title":"About aSmartPark"
-	},
-	 "documentation":{
-		"title":"Documentation"
-     },
-	"nfc":{
-		"title":"NFC",
-		"getDateTime":"Get DateTime",
-		"setDateTime":"Set DateTime",
-		"stopRFWork":"Stop RF work",
-		"startRFWork":"Start RF work",
-		"resetReader":"Reset reader",
-		"getFirmwareVersion":"Get firmware version",
-		"getTrigState":"Get trig state",
-		"getRelayState":"Get relay state",
-	    "setRelayState":"Set relay state",
-		"masterAcknowledge":"Master acknowledge",
-        "getParameterRSSI":"Get parameter RSSI",
-	    "setParameterRSSI":"Set parameter RSSI",
-        "getParameterRefresh":"Get Refresh interval",
-	    "setParameterRefresh":"Set Refresh interval",
-	    "getIDBuffer":"Get ID Buffer"
-	},
-	"index":{
-		"title":"Dobrodošli u aSmartPark",
-		"dashboard":"Pregled",
-		"description":"Vaš pogled na parking..."
-	},
-	"yesno":{
-		"yes":"DA",
-		"no":"NE"
-	},
-	"404":{
-		"title":"Stranica nije pronađena",
-		"message":"Tražena stranica ne postoji"
-	},
-	"5xx":{
-		"title":"Internal server error: __status__"
-	}
+  "menu": {
+    "dashboard": "Pregled",
+    "menuoption1": "Menu option 1",
+    "menuoption2": "Menu option 2",
+    "menuoption3": "Menu option 3"
+  },
+  "navbar": {
+    "brand": "aSmartPark",
+    "brandlink": "http://www.audiotexdoo.ba",
+    "home": "Početna",
+    "dashboard": "Pregled",
+    "nfc": "NFC",
+    "yr8600": "YR8600",
+    "about": "O nama",
+    "documentation": "Dokumentacija"
+  },
+  "common": {
+    "showAll": "Prikaži sve",
+    "showMore": "Detaljnije"
+  },
+  "dashboard": {
+    "title": "Pregled",
+    "empty": "Nema parking mesta"
+  },
+  "history": {
+    "title": "Istorija parking mjesta: __parkingplace__"
+  },
+  "parkingplace": {
+    "title": "Parking mjesto: __parkingplace__",
+    "id": "ID",
+    "state": "Status",
+    "stateTimestamp": "Vrijeme"
+  },
+  "state": {
+    "-1": "UNKNOWN",
+    "0": "OFF",
+    "1": "ON"
+  },
+  "about": {
+    "title": "About aSmartPark"
+  },
+  "documentation": {
+    "title": "Documentation"
+  },
+  "nfc": {
+    "title": "NFC",
+    "getDateTime": "Get DateTime",
+    "setDateTime": "Set DateTime",
+    "stopRFWork": "Stop RF work",
+    "startRFWork": "Start RF work",
+    "resetReader": "Reset reader",
+    "getFirmwareVersion": "Get firmware version",
+    "getTrigState": "Get trig state",
+    "getRelayState": "Get relay state",
+    "setRelayState": "Set relay state",
+    "masterAcknowledge": "Master acknowledge",
+    "getParameterRSSI": "Get parameter RSSI",
+    "setParameterRSSI": "Set parameter RSSI",
+    "getParameterRefresh": "Get Refresh interval",
+    "setParameterRefresh": "Set Refresh interval",
+    "getIDBuffer": "Get ID Buffer"
+  },
+  "yr8600": {
+    "title": "YR8600",
+    "getFirmwareVersion": "Get Firmware Version",
+    "getWorkAntenna": "Get Work Antenna",
+    "setWorkAntenna": "Set Work Antenna"
+  },
+  "index": {
+    "title": "Dobrodošli u aSmartPark",
+    "dashboard": "Pregled",
+    "description": "Vaš pogled na parking..."
+  },
+  "yesno": {
+    "yes": "DA",
+    "no": "NE"
+  },
+  "404": {
+    "title": "Stranica nije pronađena",
+    "message": "Tražena stranica ne postoji"
+  },
+  "5xx": {
+    "title": "Internal server error: __status__"
+  }
 }
