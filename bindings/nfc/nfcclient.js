@@ -428,3 +428,4 @@ function parseGetIDBufferResponse(buffer) {
 }
 
 module.exports = NfcClient;
+

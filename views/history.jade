@@ -15,5 +15,4 @@ block content
           - var bgclazz = h.state == -1 ? '' : (h.state == 1 ? 'bg-danger' : 'bg-success');
           tr(class= bgclazz)
             td: a(href='/history/view/#{h.id}')= h.timestamp
-            td= t('state.' + h.state) 
-        
+            td= t('state.' + h.state)
