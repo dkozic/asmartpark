@@ -1,5 +1,5 @@
 /node_modules/
 /asmartpark.db
 /asmartpark.log
-/.idea/
-/views/
+/bindings/
+/public/
